@@ -1,35 +1,256 @@
-CREATE TABLE person (id int(10) NOT NULL AUTO_INCREMENT, pesel int(11), identity_document_number varchar(50) NOT NULL, name varchar(255) NOT NULL, second_name varchar(50), surname varchar(255) NOT NULL, birth_date date NOT NULL, gender_id int(10) NOT NULL, country_of_origin_id int(10) NOT NULL, personal_email varchar(255) NOT NULL, photo_url varchar(255), address int(10) NOT NULL, current_degree_id int(10), PRIMARY KEY (id));
-CREATE TABLE employee (id int(10) NOT NULL AUTO_INCREMENT, person_id int(10) NOT NULL, employee_email varchar(255) NOT NULL UNIQUE, password char(255) NOT NULL, salary_account_id int(10) NOT NULL, PRIMARY KEY (id));
-CREATE TABLE employee_position (id int(10) NOT NULL AUTO_INCREMENT, position_id int(10) NOT NULL, employee_id int(10) NOT NULL, salary numeric(10, 2) NOT NULL, begin_date date NOT NULL, end_date date, faculty_id int(10), PRIMARY KEY (id));
-CREATE TABLE position (id int(10) NOT NULL AUTO_INCREMENT, name varchar(255) NOT NULL UNIQUE, min_salary numeric(10, 2), max_salary numeric(10, 2), is_didactical bit(1) NOT NULL, description varchar(1000), PRIMARY KEY (id));
-CREATE TABLE phone_number (id int(10) NOT NULL AUTO_INCREMENT, number varchar(255) NOT NULL UNIQUE, is_personal bit(1) NOT NULL, employee_id int(10), PRIMARY KEY (id));
-CREATE TABLE gender (id int(10) NOT NULL AUTO_INCREMENT, name varchar(255) NOT NULL UNIQUE, PRIMARY KEY (id));
-CREATE TABLE country (id int(10) NOT NULL AUTO_INCREMENT, name varchar(255) NOT NULL UNIQUE, is_eu_member bit(1) NOT NULL, PRIMARY KEY (id));
-CREATE TABLE address (id int(10) NOT NULL AUTO_INCREMENT, street_name varchar(255), building_number varchar(255) NOT NULL, flat_number varchar(255), post_code varchar(255), locality varchar(255) NOT NULL, administrative_unit varchar(255), country_id int(10) NOT NULL, PRIMARY KEY (id));
-CREATE TABLE building (id int(10) NOT NULL AUTO_INCREMENT, name varchar(255) NOT NULL, address_id int(10) NOT NULL, facility_id int(10) NOT NULL, is_main_for_facility bit(1) NOT NULL, gatehouse_phone_number_id int(10), PRIMARY KEY (id));
-CREATE TABLE facility (id int(10) NOT NULL AUTO_INCREMENT, name varchar(255) NOT NULL UNIQUE, PRIMARY KEY (id));
-CREATE TABLE student (index_number int(10) NOT NULL AUTO_INCREMENT, person_id int(10) NOT NULL, student_email varchar(255) NOT NULL UNIQUE, password char(255) NOT NULL, expenses_account_id int(10) NOT NULL, incomes_account_id int(10), PRIMARY KEY (index_number));
-CREATE TABLE bank_account (id int(10) NOT NULL AUTO_INCREMENT, number int(10) NOT NULL UNIQUE, PRIMARY KEY (id));
-CREATE TABLE student_studies (id int(10) NOT NULL AUTO_INCREMENT, student_index_number int(10) NOT NULL, studies_offer_id int(10) NOT NULL, thesis_id int(10), current_semester int(10), start_date date NOT NULL, end_date date, PRIMARY KEY (id));
-CREATE TABLE thesis (id int(10) NOT NULL AUTO_INCREMENT, title varchar(255) NOT NULL, abstract varchar(255) NOT NULL, contents_url varchar(255) NOT NULL, author_lesson_group_id int(10) NOT NULL, PRIMARY KEY (id));
-CREATE TABLE room (id int(10) NOT NULL AUTO_INCREMENT, name varchar(255) NOT NULL, floor_number int(10) NOT NULL, building_id int(10) NOT NULL, didactical bit(1) NOT NULL, PRIMARY KEY (id));
-CREATE TABLE lesson (id int(10) NOT NULL AUTO_INCREMENT, `date` date NOT NULL, star_hour time(6) NOT NULL, end_hour time(6) NOT NULL, lesson_group_id int(10) NOT NULL, teacher_employee_id int(10) NOT NULL, is_canceled bit(1) NOT NULL, room_id int(10), virtual_lesson_url varchar(255), PRIMARY KEY (id));
-CREATE TABLE student_lesson_participation (id int(10) NOT NULL AUTO_INCREMENT, student_was_present bit(1), lesson_id int(10) NOT NULL, student_studies_id int(10) NOT NULL, PRIMARY KEY (id));
-CREATE TABLE lesson_group (id int(10) NOT NULL AUTO_INCREMENT, lead_teacher_employee_id int(10) NOT NULL, course_year_id int(10) NOT NULL, resources_url varchar(255), max_students int(10), PRIMARY KEY (id));
-CREATE TABLE grade (id int(10) NOT NULL AUTO_INCREMENT, student_studies_id int(10) NOT NULL, grade_value_id int(10) NOT NULL, lesson_group_id int(10) NOT NULL, description varchar(255) NOT NULL, is_final bit(1) NOT NULL, creation_date date NOT NULL, PRIMARY KEY (id));
-CREATE TABLE grade_value (id int(10) NOT NULL AUTO_INCREMENT, value numeric(2, 1) NOT NULL UNIQUE, name varchar(255) NOT NULL, PRIMARY KEY (id));
-CREATE TABLE course_year (id int(10) NOT NULL AUTO_INCREMENT, course_id int(10) NOT NULL, description varchar(255), start_date date NOT NULL, end_date date NOT NULL, PRIMARY KEY (id));
-CREATE TABLE course (id int(10) NOT NULL AUTO_INCREMENT, description varchar(255), ects int(10) NOT NULL, course_form_id int(10) NOT NULL, course_group_id int(10) NOT NULL, lesson_hours int(10) NOT NULL, PRIMARY KEY (id));
-CREATE TABLE course_form (id int(10) NOT NULL AUTO_INCREMENT, name varchar(255) NOT NULL UNIQUE, PRIMARY KEY (id));
-CREATE TABLE course_group (id int(10) NOT NULL AUTO_INCREMENT, name varchar(255) NOT NULL, description varchar(255), PRIMARY KEY (id));
-CREATE TABLE course_group_for_studies (id int(10) NOT NULL AUTO_INCREMENT, course_group_id int(10) NOT NULL, lead_teacher_employee_id int(10) NOT NULL, studies_offer_id int(10) NOT NULL, semester int(10) NOT NULL, PRIMARY KEY (id));
-CREATE TABLE studies_offer (id int(10) NOT NULL AUTO_INCREMENT, form_of_studies_id int(10) NOT NULL, specialization_id int(10) NOT NULL, degree_id int(10) NOT NULL, price_per_semester numeric(10, 2), semesters int(10) NOT NULL, introduction_date date NOT NULL, closure_date date, PRIMARY KEY (id));
-CREATE TABLE degree (id int(10) NOT NULL AUTO_INCREMENT, name varchar(255) NOT NULL UNIQUE, PRIMARY KEY (id));
-CREATE TABLE form_of_studies (id int(10) NOT NULL AUTO_INCREMENT, name varchar(255) NOT NULL UNIQUE, PRIMARY KEY (id));
-CREATE TABLE specialization (id int(10) NOT NULL AUTO_INCREMENT, name varchar(255) NOT NULL, major_id int(10) NOT NULL, PRIMARY KEY (id));
-CREATE TABLE major (id int(10) NOT NULL AUTO_INCREMENT, name varchar(255) NOT NULL UNIQUE, faculty_id int(10) NOT NULL, PRIMARY KEY (id));
-CREATE TABLE faculty (id int(10) NOT NULL AUTO_INCREMENT, name varchar(255) NOT NULL UNIQUE, PRIMARY KEY (id));
-CREATE TABLE non_didactic_work (id int(10) NOT NULL AUTO_INCREMENT, room_id int(10), employee_id int(10) NOT NULL, day_of_week int(10) NOT NULL, start_hour time(6) NOT NULL, end_hour time(6) NOT NULL, description varchar(255) NOT NULL, PRIMARY KEY (id));
+CREATE TABLE person (
+    id INT(10) NOT NULL AUTO_INCREMENT,
+    pesel INT(11),
+    identity_document_number VARCHAR(50) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    second_name VARCHAR(50),
+    surname VARCHAR(255) NOT NULL,
+    birth_date DATE NOT NULL,
+    gender_id INT(10) NOT NULL,
+    country_of_origin_id INT(10) NOT NULL,
+    personal_email VARCHAR(255) NOT NULL,
+    photo_url VARCHAR(255),
+    address INT(10) NOT NULL,
+    current_degree_id INT(10),
+    PRIMARY KEY (id)
+);
+CREATE TABLE employee (
+    id INT(10) NOT NULL AUTO_INCREMENT,
+    person_id INT(10) NOT NULL,
+    employee_email VARCHAR(255) NOT NULL UNIQUE,
+    password CHAR(255) NOT NULL,
+    salary_account_id INT(10) NOT NULL,
+    PRIMARY KEY (id)
+);
+CREATE TABLE employee_position (
+    id INT(10) NOT NULL AUTO_INCREMENT,
+    position_id INT(10) NOT NULL,
+    employee_id INT(10) NOT NULL,
+    salary NUMERIC(10 , 2 ) NOT NULL,
+    begin_date DATE NOT NULL,
+    end_date DATE,
+    faculty_id INT(10),
+    PRIMARY KEY (id)
+);
+CREATE TABLE position (
+    id INT(10) NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    min_salary NUMERIC(10 , 2 ),
+    max_salary NUMERIC(10 , 2 ),
+    is_didactical BIT(1) NOT NULL,
+    description VARCHAR(1000),
+    PRIMARY KEY (id)
+);
+CREATE TABLE phone_number (
+    id INT(10) NOT NULL AUTO_INCREMENT,
+    number VARCHAR(255) NOT NULL UNIQUE,
+    is_personal BIT(1) NOT NULL,
+    employee_id INT(10),
+    PRIMARY KEY (id)
+);
+CREATE TABLE gender (
+    id INT(10) NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    PRIMARY KEY (id)
+);
+CREATE TABLE country (
+    id INT(10) NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    is_eu_member BIT(1) NOT NULL,
+    PRIMARY KEY (id)
+);
+CREATE TABLE address (
+    id INT(10) NOT NULL AUTO_INCREMENT,
+    street_name VARCHAR(255),
+    building_number VARCHAR(255) NOT NULL,
+    flat_number VARCHAR(255),
+    post_code VARCHAR(255),
+    locality VARCHAR(255) NOT NULL,
+    administrative_unit VARCHAR(255),
+    country_id INT(10) NOT NULL,
+    PRIMARY KEY (id)
+);
+CREATE TABLE building (
+    id INT(10) NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    address_id INT(10) NOT NULL,
+    facility_id INT(10) NOT NULL,
+    is_main_for_facility BIT(1) NOT NULL,
+    gatehouse_phone_number_id INT(10),
+    PRIMARY KEY (id)
+);
+CREATE TABLE facility (
+    id INT(10) NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    PRIMARY KEY (id)
+);
+CREATE TABLE student (
+    index_number INT(10) NOT NULL AUTO_INCREMENT,
+    person_id INT(10) NOT NULL,
+    student_email VARCHAR(255) NOT NULL UNIQUE,
+    password CHAR(255) NOT NULL,
+    expenses_account_id INT(10) NOT NULL,
+    incomes_account_id INT(10),
+    PRIMARY KEY (index_number)
+);
+CREATE TABLE bank_account (
+    id INT(10) NOT NULL AUTO_INCREMENT,
+    number INT(10) NOT NULL UNIQUE,
+    PRIMARY KEY (id)
+);
+CREATE TABLE student_studies (
+    id INT(10) NOT NULL AUTO_INCREMENT,
+    student_index_number INT(10) NOT NULL,
+    studies_offer_id INT(10) NOT NULL,
+    thesis_id INT(10),
+    current_semester INT(10),
+    start_date DATE NOT NULL,
+    end_date DATE,
+    PRIMARY KEY (id)
+);
+CREATE TABLE thesis (
+    id INT(10) NOT NULL AUTO_INCREMENT,
+    title VARCHAR(255) NOT NULL,
+    abstract VARCHAR(255) NOT NULL,
+    contents_url VARCHAR(255) NOT NULL,
+    author_lesson_group_id INT(10) NOT NULL,
+    PRIMARY KEY (id)
+);
+CREATE TABLE room (
+    id INT(10) NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    floor_number INT(10) NOT NULL,
+    building_id INT(10) NOT NULL,
+    didactical BIT(1) NOT NULL,
+    PRIMARY KEY (id)
+);
+CREATE TABLE lesson (
+    id INT(10) NOT NULL AUTO_INCREMENT,
+    `date` DATE NOT NULL,
+    star_hour TIME(6) NOT NULL,
+    end_hour TIME(6) NOT NULL,
+    lesson_group_id INT(10) NOT NULL,
+    teacher_employee_id INT(10) NOT NULL,
+    is_canceled BIT(1) NOT NULL,
+    room_id INT(10),
+    virtual_lesson_url VARCHAR(255),
+    PRIMARY KEY (id)
+);
+CREATE TABLE student_lesson_participation (
+    id INT(10) NOT NULL AUTO_INCREMENT,
+    student_was_present BIT(1),
+    lesson_id INT(10) NOT NULL,
+    student_studies_id INT(10) NOT NULL,
+    PRIMARY KEY (id)
+);
+CREATE TABLE lesson_group (
+    id INT(10) NOT NULL AUTO_INCREMENT,
+    lead_teacher_employee_id INT(10) NOT NULL,
+    course_year_id INT(10) NOT NULL,
+    resources_url VARCHAR(255),
+    max_students INT(10),
+    PRIMARY KEY (id)
+);
+CREATE TABLE grade (
+    id INT(10) NOT NULL AUTO_INCREMENT,
+    student_studies_id INT(10) NOT NULL,
+    grade_value_id INT(10) NOT NULL,
+    lesson_group_id INT(10) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    is_final BIT(1) NOT NULL,
+    creation_date DATE NOT NULL,
+    PRIMARY KEY (id)
+);
+CREATE TABLE grade_value (
+    id INT(10) NOT NULL AUTO_INCREMENT,
+    value NUMERIC(2 , 1 ) NOT NULL UNIQUE,
+    name VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
+);
+CREATE TABLE course_year (
+    id INT(10) NOT NULL AUTO_INCREMENT,
+    course_id INT(10) NOT NULL,
+    description VARCHAR(255),
+    start_date DATE NOT NULL,
+    end_date DATE NOT NULL,
+    PRIMARY KEY (id)
+);
+CREATE TABLE course (
+    id INT(10) NOT NULL AUTO_INCREMENT,
+    description VARCHAR(255),
+    ects INT(10) NOT NULL,
+    course_form_id INT(10) NOT NULL,
+    course_group_id INT(10) NOT NULL,
+    lesson_hours INT(10) NOT NULL,
+    PRIMARY KEY (id)
+);
+CREATE TABLE course_form (
+    id INT(10) NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    PRIMARY KEY (id)
+);
+CREATE TABLE course_group (
+    id INT(10) NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    description VARCHAR(255),
+    PRIMARY KEY (id)
+);
+CREATE TABLE course_group_for_studies (
+    id INT(10) NOT NULL AUTO_INCREMENT,
+    course_group_id INT(10) NOT NULL,
+    lead_teacher_employee_id INT(10) NOT NULL,
+    studies_offer_id INT(10) NOT NULL,
+    semester INT(10) NOT NULL,
+    PRIMARY KEY (id)
+);
+CREATE TABLE studies_offer (
+    id INT(10) NOT NULL AUTO_INCREMENT,
+    form_of_studies_id INT(10) NOT NULL,
+    specialization_id INT(10) NOT NULL,
+    degree_id INT(10) NOT NULL,
+    price_per_semester NUMERIC(10 , 2 ),
+    semesters INT(10) NOT NULL,
+    introduction_date DATE NOT NULL,
+    closure_date DATE,
+    PRIMARY KEY (id)
+);
+CREATE TABLE degree (
+    id INT(10) NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    PRIMARY KEY (id)
+);
+CREATE TABLE form_of_studies (
+    id INT(10) NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    PRIMARY KEY (id)
+);
+CREATE TABLE specialization (
+    id INT(10) NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    major_id INT(10) NOT NULL,
+    PRIMARY KEY (id)
+);
+CREATE TABLE major (
+    id INT(10) NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    faculty_id INT(10) NOT NULL,
+    PRIMARY KEY (id)
+);
+CREATE TABLE faculty (
+    id INT(10) NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL UNIQUE,
+    PRIMARY KEY (id)
+);
+CREATE TABLE non_didactic_work (
+    id INT(10) NOT NULL AUTO_INCREMENT,
+    room_id INT(10),
+    employee_id INT(10) NOT NULL,
+    day_of_week INT(10) NOT NULL,
+    start_hour TIME(6) NOT NULL,
+    end_hour TIME(6) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
+);
 ALTER TABLE employee ADD CONSTRAINT FKemployee944641 FOREIGN KEY (person_id) REFERENCES person (id);
 ALTER TABLE employee_position ADD CONSTRAINT FKemployee_p571892 FOREIGN KEY (employee_id) REFERENCES employee (id);
 ALTER TABLE employee_position ADD CONSTRAINT FKemployee_p621508 FOREIGN KEY (position_id) REFERENCES position (id);
