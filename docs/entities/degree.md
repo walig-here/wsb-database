@@ -6,4 +6,4 @@ Stopień studiów--np. magisterski, inżynierski itd.
 
 ### `name`
 
-Nazwa stopnia w języku naturalnym.
+Nazwa stopnia w języku naturalnym. Unikalny.

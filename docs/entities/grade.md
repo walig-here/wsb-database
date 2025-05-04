@@ -1,6 +1,6 @@
 # `grade`
 
-Oceny otrzymywane przez studenta w wyniku jego uczestnictwa w grupi zajęciowej.
+Oceny otrzymywane przez studenta w ramach studiów i w wyniku jego uczestnictwa w grupi zajęciowej.
 
 Osobą wystawiającą oceną jest w domyśle główny prowadzący grupy zajęciowej.
 
@@ -8,9 +8,13 @@ Ocena możę być cząstkowa lub końcowa. Przy czym w ramach danej grupy zajęc
 
 ## Atrybuty
 
-### `student_lesson_group`
+### `student_studies_id`
 
-Odniesnie do danych nt. uczestnictwa studenta w grupie zajęciowej. Pozwala zidentyfikować w ramach jakiej grupy zajęciowej student otrzymał daną ocenę.
+Odniesnie do danych nt. studiów, na których student otrzymał ocenę.
+
+### `lesson_group_id`
+
+Odniesienie do grupy zajęć, na której student otrzymał ocenę.
 
 ### `grade_value_id`
 

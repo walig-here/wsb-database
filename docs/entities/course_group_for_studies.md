@@ -1,4 +1,4 @@
-# `specialization_course_group`
+# `course_group_for_studies`
 
 Grupa kursów realizowana dla danej oferty edukacyjnej i prowadzona przez określonego dydaktyka-opiekuna.
 
@@ -14,6 +14,10 @@ Odnośnik do realizowanej grupy kursów.
 
 Odnośnik do pracownika dydaktycznego, który jest głównym opiekunem danej grupy kursów.
 
-### `studies_id`
+### `studies_offer_id`
 
 Odnośnik do oferty edukacyjnej, której częścią jest grupa kursów prowadzona przez tego a nie innego wykładowcę.
+
+### `semester`
+
+Zalecany przez uczelnię semestr, na którym zrealizowana ma być grupa kursów.

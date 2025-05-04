@@ -18,7 +18,7 @@ Odnośnik do typu studiów realizowanych przez studenta.
 
 Odnośnik do danych pracy dyplomowej napisanej przez studenta w ramach zakończenia danych studiów. Jest to NULL, gdy praca nie jest jeszcze napisana, bo student wciąż jest na zbyt niskim semestrze. Ewnetualnie jest `NULL`, gdy student ukończył studia, ale uzyskał wyłącznie absolutorium.
 
-### `semester`
+### `current_semester`
 
 Numer semestru, na którym znajduje się aktualnie student w ramach rozważanych studiów. Nie może być niedodatni. Musi być mniejszy niż maksymalna liczba semestrów dostępnych w ramach realizowanych studiów.
 

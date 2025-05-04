@@ -8,4 +8,4 @@ Redundancja jest też mniejsza, gdy uczelnia przydziela wielu studentom ten sam 
 
 ## `number`
 
-Number konta bankowego.
+Number konta bankowego. Unikalny, aby nie było redundancji i ta tabela miała sens.

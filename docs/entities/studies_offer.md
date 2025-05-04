@@ -1,4 +1,4 @@
-# `studies`
+# `studies_offer`
 
 Typ studiów oferowanych przez uczelnię. Przykładowo: inżynierskie studia informatyczne, zaoczne. Najprościej mówiąc jakaś oferta edukacyjna dla kandydatów na studentów.
 
@@ -28,11 +28,11 @@ Odnośnik do stopnia studiów--np. inżynierskie, magisterskie, doktorskie.
 
 Cena za semestr studiów w PLN, wyznaczona przez uczelnie. NULL jeżeli dane studia są wyłącznie bezpłatne lub gdy cena nie została jeszcze wyznaczona.
 
-### `start_date`
+### `introdution_date`
 
 Data wprowadzenia przez uczelnię danej oferty edukacyjnej.
 
-### `end_date`
+### `closure_date`
 
 Data wycofania przez uczelnię danej oferty edukacyjnej.
 

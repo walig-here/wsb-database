@@ -1,6 +1,6 @@
 # country
 
-Dane kraju czy to poziązanego z daną osobą fizyczną jako jej kraj urzodzenia czy to powiązanego z jakimś adresem. Isotne dla pracowników prawnych i administracyjncyh uczelni.
+Dane kraju czy to poziązanego z daną osobą fizyczną jako jej kraj pochodzenia czy to powiązanego z jakimś adresem. Isotne dla pracowników prawnych i administracyjncyh uczelni.
 
 ## Atrybuty
 

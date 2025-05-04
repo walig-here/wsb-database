@@ -12,4 +12,4 @@ Nazwa grupy kursów w języku narualnym. Powinna być unikalna.
 
 ### `description`
 
-Krótki opis grupy kursów. Przykładowo czego student się ma tam nauczyć itd.
+Krótki opis grupy kursów. Przykładowo czego student się ma tam nauczyć itd. Niewymagany.

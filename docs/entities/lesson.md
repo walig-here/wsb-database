@@ -6,13 +6,17 @@ Przewiduje się możliwość zmiany prowadzącego, odwołania czy też prowadze
 
 ## Atrybuty
 
-### `start_date`
+### `date`
 
-Data i godzina rozpoczęcia zajęć.
+Data odbycia się zajęć.
 
-### `end_date`
+### `star_hour`
 
-Data i godzina zakończenia zajęć.
+Godzina rozpoczęcia się zajęć.
+
+### `end_hour`
+
+Godzina zakończenia się zajęć.
 
 ### `lesson_group_id`
 

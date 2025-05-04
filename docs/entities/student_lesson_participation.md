@@ -1,4 +1,4 @@
-# `student_lessons`
+# `student_lesson_participation`
 
 Informacje na temat uczestnictwa studenta w zajęciach z określonej grupy zajęciowej.
 
@@ -16,8 +16,6 @@ Może być NULL gdy prowadzący nie sprawdził obecności, zajęcia jeszcze się
 
 Odnośnik do zajęć, w których uczestnicznyć ma student.
 
-### `student_lesson_group_id`
+### `student_studies_id`
 
-Odnośnik do danych na temat uczestnictwa studenta w grupie zajęciowej.
-
-Musi być to ta sama grupa zajęciowa, do której należą same zajęcia, w których student uczestniczy.
+Odnośnik do studiów, w ramach których student uczestniczy w zajęciach.

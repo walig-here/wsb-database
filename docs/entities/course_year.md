@@ -19,3 +19,7 @@ Data początkowa rocznika.
 ### `end_date`
 
 Data końcowa rocznika.
+
+### `description`
+
+Opis tego co będzie działo się w danym roczniku na kursie. Jakieś ogólne zasady, wyniku realizacji itd.

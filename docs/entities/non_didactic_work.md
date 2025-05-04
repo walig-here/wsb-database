@@ -1,8 +1,8 @@
-# `employee_nondidactic_workplace`
+# `non_didactic_work`
 
-Miejsce pracy przypisane do danego pracownika w określonym przedziale czasowym i reguralnie (zawsze w określonym dniu tygodnia). Wykluczane są miejsca pracy dydaktycznej, które są po prostu blokami widocznymi w planie zajęć.
+Praca wykonywana w określonym miejscu, przedziale czasowym i reguralnie (zawsze w określonym dniu tygodnia). Wykluczana jest praca dydaktyczna, która jest po prostu blokami widocznymi w planie zajęć.
 
-Szczególnie przydatne dla przykładowo pracowników dziekanatów, których godziny i miejsce pracy muszą być znane dla studentów, aby Ci mogli załatwić swoje sprawy. Ewentualnie tak można wprowadzić godziny konsultacji.
+Szczególnie przydatne dla przykładowo pracy pracowników dziekanatów, których godziny i miejsce pracy muszą być znane dla studentów, aby Ci mogli załatwić swoje sprawy. Ewentualnie tak można wprowadzić godziny konsultacji.
 
 ## Atrybuty
 
